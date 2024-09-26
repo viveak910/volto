@@ -53,6 +53,10 @@ export default function devProxyMiddleware() {
       if (!req.body || !Object.keys(req.body).length) {
         return;
       }
+      //Fixed issue with proxy requests not setting `X-Real-IP`, `X-Forwarded-For`, and `X-Forwarded-Host` headers correctly.
+      proxyReq.setHeader('X-Real-IP', req.ip); // Original IP of the client
+      proxyReq.setHeader('X-Forwarded-For', req.ip); // Client IP (for proxy chains)
+      proxyReq.setHeader('X-Forwarded-Host', req.hostname); // Original host requested by the client
 
       const contentType = proxyReq.getHeader('Content-Type');
       const writeBody = (bodyData) => {

@@ -8579,3 +8579,7 @@ refer to all of them in https://github.com/plone/volto/releases
 ### Changed
 
 - Fixed passing intl to the schemaExtender in the ObjectListWidget component. @1bsilver
+
+### Added
+
+- Fixed issue with proxy requests not setting `X-Real-IP`, `X-Forwarded-For`, and `X-Forwarded-Host` headers correctly.
